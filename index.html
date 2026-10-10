@@ -1200,10 +1200,50 @@
       border-radius: 4px;
     }
 
-    /* Mehraab / Mughal arch shape for the five dome cards */
+    /* Even cards (2, 4, 6, 8, 10): match the supplied rectangular
+       heritage frame with the scalloped Mughal arch inside it. */
+    /* Even cards: square outer card, brown field behind the scalloped arch,
+       with the photograph visible only inside the arch opening. */
     .craft-card-item.shape-dome .craft-card-img-wrap {
-      border-radius: 18% 18% 4px 4px;
-      clip-path: inset(0 round 18% 18% 4px 4px);
+      border-radius: 0;
+      clip-path: none;
+      isolation: isolate;
+      background: #8b451f;
+    }
+
+    .craft-card-item.shape-dome .craft-card-img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+
+    .craft-heritage-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .craft-heritage-frame .craft-arch-brown {
+      /* Fill only the area above/outside the arch with the site's main brown */
+      fill: var(--brown);
+      stroke: none;
+    }
+
+    /* The reference sketch has no visible outline: keep only the brown
+       background above the arch and the photograph clipped to the arch. */
+    .craft-heritage-frame .craft-outer-frame,
+    .craft-heritage-frame .craft-arch-outline {
+      display: none;
+      stroke: none;
+      fill: none;
     }
 
     .craft-card-img-wrap img {
@@ -4970,11 +5010,21 @@ His vision is to preserve the royal soul of Rajasthan while creating timeless sp
       const shapeClass = (index % 2 === 0) ? "shape-square" : "shape-dome";
       const div = document.createElement("div");
       div.className = `craft-card-item ${shapeClass}`;
+      const archClipId = `craftArchClip${index + 1}`;
       div.innerHTML = `
         <div class="beige-card-wrap" style="height:100%; display:flex; flex-direction:column; justify-content:space-between; cursor:pointer;">
           <div>
             <div class="craft-card-img-wrap">
-              <img src="${card.image}" alt="${card.title}" loading="lazy">
+              ${shapeClass === "shape-dome" ? `
+                <svg class="craft-heritage-frame" viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden="true">
+                  <defs>
+                    <clipPath id="${archClipId}" clipPathUnits="objectBoundingBox">
+                      <path d="M.02 .407 C.07 .393 .08 .364 .06 .336 C.02 .286 .04 .236 .10 .214 C.06 .171 .09 .129 .16 .129 C.15 .079 .21 .050 .28 .071 C.32 .021 .40 .021 .44 .064 C.47 .007 .56 .007 .60 .064 C.65 .021 .73 .029 .76 .071 C.84 .050 .90 .086 .88 .129 C.96 .129 .98 .179 .92 .214 C.99 .243 1 .300 .95 .336 C.92 .364 .94 .393 .98 .407 L.98 .986 L.02 .986 Z" />
+                    </clipPath>
+                  </defs>
+                  <path class="craft-arch-brown" d="M2 57 C7 55 8 51 6 47 C2 40 4 33 10 30 C6 24 9 18 16 18 C15 11 21 7 28 10 C32 3 40 3 44 9 C47 1 56 1 60 9 C65 3 73 4 76 10 C84 7 90 12 88 18 C96 18 98 25 92 30 C99 34 100 42 95 47 C92 51 94 55 98 57 L98 2 H2 Z" />
+                </svg>` : ""}
+              <img src="${card.image}" alt="${card.title}" loading="lazy" ${shapeClass === "shape-dome" ? `style="clip-path:url(#${archClipId});"` : ""}>
             </div>
             <div class="craft-card-info">
               <h3>${card.title}</h3>
