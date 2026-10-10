@@ -1208,7 +1208,10 @@
       border-radius: 0;
       clip-path: none;
       isolation: isolate;
-      background: #8b451f;
+      background: var(--brown);
+      border: 0;
+      outline: 0;
+      box-shadow: none;
     }
 
     .craft-card-item.shape-dome .craft-card-img-wrap img {
@@ -1232,9 +1235,10 @@
     }
 
     .craft-heritage-frame .craft-arch-brown {
-      /* Fill only the area above/outside the arch with the site's main brown */
+      /* Solid site brown only; no sketch/frame outline */
       fill: var(--brown);
       stroke: none;
+      stroke-width: 0;
     }
 
     /* The reference sketch has no visible outline: keep only the brown
@@ -5016,7 +5020,7 @@ His vision is to preserve the royal soul of Rajasthan while creating timeless sp
           <div>
             <div class="craft-card-img-wrap">
               ${shapeClass === "shape-dome" ? `
-                <svg class="craft-heritage-frame" viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden="true">
+                <svg class="craft-heritage-frame" viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
                   <defs>
                     <clipPath id="${archClipId}" clipPathUnits="objectBoundingBox">
                       <path d="M.02 .407 C.07 .393 .08 .364 .06 .336 C.02 .286 .04 .236 .10 .214 C.06 .171 .09 .129 .16 .129 C.15 .079 .21 .050 .28 .071 C.32 .021 .40 .021 .44 .064 C.47 .007 .56 .007 .60 .064 C.65 .021 .73 .029 .76 .071 C.84 .050 .90 .086 .88 .129 C.96 .129 .98 .179 .92 .214 C.99 .243 1 .300 .95 .336 C.92 .364 .94 .393 .98 .407 L.98 .986 L.02 .986 Z" />
@@ -5024,7 +5028,7 @@ His vision is to preserve the royal soul of Rajasthan while creating timeless sp
                   </defs>
                   <path class="craft-arch-brown" d="M2 57 C7 55 8 51 6 47 C2 40 4 33 10 30 C6 24 9 18 16 18 C15 11 21 7 28 10 C32 3 40 3 44 9 C47 1 56 1 60 9 C65 3 73 4 76 10 C84 7 90 12 88 18 C96 18 98 25 92 30 C99 34 100 42 95 47 C92 51 94 55 98 57 L98 2 H2 Z" />
                 </svg>` : ""}
-              <img src="${card.image}" alt="${card.title}" loading="lazy" ${shapeClass === "shape-dome" ? `style="clip-path:url(#${archClipId});"` : ""}>
+              <img src="${card.image}" alt="${card.title}" loading="lazy" ${shapeClass === "shape-dome" ? `style="clip-path:url(#${archClipId}); -webkit-clip-path:url(#${archClipId});"` : ""}>
             </div>
             <div class="craft-card-info">
               <h3>${card.title}</h3>
