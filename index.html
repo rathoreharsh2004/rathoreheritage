@@ -1201,14 +1201,9 @@
     }
 
     .craft-card-item.shape-dome .craft-card-img-wrap {
-      /* Traditional scalloped Rajasthani mehraab / arch silhouette */
       border-radius: 0;
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 400' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 400V220 C0 205 8 195 20 195 C5 180 8 160 25 150 C5 130 15 105 40 100 C25 75 45 55 70 65 C65 35 90 20 112 35 C120 5 145 0 160 28 C175 0 200 5 208 35 C230 20 255 35 250 65 C275 55 295 75 280 100 C305 105 315 130 295 150 C312 160 315 180 300 195 C312 195 320 205 320 220 V400 Z'/%3E%3C/svg%3E");
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 400' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 400V220 C0 205 8 195 20 195 C5 180 8 160 25 150 C5 130 15 105 40 100 C25 75 45 55 70 65 C65 35 90 20 112 35 C120 5 145 0 160 28 C175 0 200 5 208 35 C230 20 255 35 250 65 C275 55 295 75 280 100 C305 105 315 130 295 150 C312 160 315 180 300 195 C312 195 320 205 320 220 V400 Z'/%3E%3C/svg%3E");
-      -webkit-mask-size: 100% 100%;
-      mask-size: 100% 100%;
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
+      clip-path: url(#heritageMehrabClip);
+      -webkit-clip-path: url(#heritageMehrabClip);
     }
 
     .craft-card-img-wrap img {
@@ -2837,6 +2832,12 @@
       background: var(--brown-soft);
     }
 
+    .raw-material-image-wrap video {
+      pointer-events: none !important;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
     .raw-material-image-wrap video,
     .raw-material-image-wrap img {
       position: absolute;
@@ -2851,13 +2852,6 @@
       transition: opacity .45s ease;
       border: 0;
       outline: none;
-    }
-
-    /* Raw-section videos are display-only: no clicks, controls, or PiP interaction. */
-    .raw-material-image-wrap video {
-      pointer-events: none !important;
-      user-select: none;
-      -webkit-user-select: none;
     }
 
     .raw-material-caption {
@@ -3694,6 +3688,14 @@
 </head>
 
 <body>
+  <!-- Scalloped Rajasthani mehrab silhouette for dome-shaped heritage cards -->
+  <svg aria-hidden="true" width="0" height="0" style="position:absolute; width:0; height:0; overflow:hidden;">
+    <defs>
+      <clipPath id="heritageMehrabClip" clipPathUnits="objectBoundingBox">
+        <path d="M0,1 L0,0.91 C0.06,0.91 0.07,0.86 0.045,0.82 C-0.01,0.77 0.005,0.69 0.065,0.65 C0.005,0.60 0.02,0.51 0.10,0.48 C0.045,0.40 0.07,0.31 0.15,0.29 C0.10,0.20 0.16,0.12 0.25,0.15 C0.23,0.06 0.34,0.035 0.40,0.13 C0.40,0.02 0.49,0 0.50,0 C0.56,0 0.60,0.05 0.60,0.13 C0.66,0.035 0.77,0.06 0.75,0.15 C0.84,0.12 0.90,0.20 0.85,0.29 C0.93,0.31 0.955,0.40 0.90,0.48 C0.98,0.51 0.995,0.60 0.935,0.65 C0.995,0.69 1.01,0.77 0.955,0.82 C0.93,0.86 0.94,0.91 1,0.91 L1,1 Z"/>
+      </clipPath>
+    </defs>
+  </svg>
 
   <!-- PRELOADER -->
   <div class="preloader" id="preloader">
@@ -4189,7 +4191,7 @@ His vision is to preserve the royal soul of Rajasthan while creating timeless sp
           <div class="raw-material-card">
             <div class="raw-material-image-wrap">
               <img id="rawMaterialImage" src="raw1.jpg" alt="Raw Material Element 1" loading="lazy">
-              <video id="rawMaterialVideo" muted loop playsinline preload="metadata" controls="false" disablepictureinpicture controlslist="nodownload noplaybackrate" tabindex="-1" aria-hidden="true"></video>
+              <video id="rawMaterialVideo" muted loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" disableremoteplayback tabindex="-1" aria-hidden="true"></video>
             </div>
 
             <div class="raw-material-caption">
@@ -4906,7 +4908,7 @@ His vision is to preserve the royal soul of Rajasthan while creating timeless sp
         title: "Heritage Doors & Grand Entrances",
         tagline: "Bespoke traditional doors, Dodi entrances and royal gateways crafted with timeless character.",
         description: "Grand entrances and ceremonial Dodi gateways define the regal threshold of heritage architecture. Handcrafted from seasoned solid woods and adorned with heavy brass fittings, hand-carved panels, and authentic arches, our bespoke entrances welcome guests with dignified majesty and enduring character.",
-        image: "card2.jpeg",
+        image: "card24.jpg",
         subImages: ["card21.jpg", "card22.jpeg", "card23.jpg", "card24.jpg"]
       },
       {
@@ -4934,7 +4936,7 @@ His vision is to preserve the royal soul of Rajasthan while creating timeless sp
         title: "Thekri & Decorative Glass Art",
         tagline: "Intricate Thekri glass craftsmanship creating rich colour, reflection and royal detailing.",
         description: "Thekri glass inlay is the crowning jewel of palace craftsmanship, where thousands of hand-cut convex mirror pieces and colored Belgium glass are meticulously set into lime plaster. The resulting mosaics shimmer under chandelier light and candlelight, turning royal halls into radiant sanctuaries of light and wonder.",
-        image: "card6.png",
+        image: "card6.jpeg",
         subImages: ["card61.jpeg", "card62.jpeg", "card63.jpeg", "card64.jpeg", "card65.jpeg"]
       },
       {
@@ -4962,7 +4964,7 @@ His vision is to preserve the royal soul of Rajasthan while creating timeless sp
         title: "Handcrafted Art, Furniture & Interiors",
         tagline: "Handcrafted paintings, carved furniture and bespoke interior details that complete the timeless heritage character.",
         description: "Complete heritage living requires furniture and interior styling conceived as architecture at human scale. From teakwood and rosewood hand-carved thrones, diwans, and brass-studded ottomans to traditional miniature paintings and rich tapestries, we design complete interior environments steeped in royal authenticity and timeless luxury.",
-        image: "card101.jpeg",
+        image: "card104.jpeg",
         subImages: ["card101.jpeg", "card102.jpeg", "card103.jpeg", "card104.jpeg", "card105.jpeg", "card106.jpeg", "card107.jpeg", "card108.jpeg", "card109.jpeg", "card110.jpeg"]
       }
     ];
@@ -5168,16 +5170,12 @@ His vision is to preserve the royal soul of Rajasthan while creating timeless sp
     const rawMaterialImage = document.getElementById("rawMaterialImage");
     const rawMaterialVideo = document.getElementById("rawMaterialVideo");
     if (rawMaterialVideo) {
-      rawMaterialVideo.controls = false;
       rawMaterialVideo.disablePictureInPicture = true;
+      rawMaterialVideo.controls = false;
       rawMaterialVideo.setAttribute("disablepictureinpicture", "");
-      rawMaterialVideo.setAttribute("controlslist", "nodownload noplaybackrate");
-      rawMaterialVideo.setAttribute("tabindex", "-1");
-      rawMaterialVideo.addEventListener("enterpictureinpicture", (event) => {
-        event.preventDefault();
-        try { document.exitPictureInPicture(); } catch (_) {}
-      });
-      rawMaterialVideo.addEventListener("contextmenu", (event) => event.preventDefault());
+      rawMaterialVideo.setAttribute("disableremoteplayback", "");
+      rawMaterialVideo.setAttribute("controlslist", "nodownload noplaybackrate noremoteplayback");
+      rawMaterialVideo.style.pointerEvents = "none";
     }
     const rawMaterialTagline = document.getElementById("rawMaterialTagline");
     const rawMaterialCounter = document.getElementById("rawMaterialCounter");
